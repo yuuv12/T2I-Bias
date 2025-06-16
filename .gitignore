@@ -1,8 +1,11 @@
 /images/*
+/faces/*
+/persons/*
 /API_KEY.py
 *.ipynb
 *.pt
 __pycache__/
 /deepgaze/
 .history/
+*.zip
 
