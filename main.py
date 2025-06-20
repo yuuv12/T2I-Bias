@@ -3,7 +3,7 @@ from prompt import *
 import os
 
 def generate_images(num_images=50):
-    from image_generate import generate_images_from_prompt
+    from generater import generate_images_from_prompt
     for key, o in occupations.items():  # key是职业英文名，o是中文描述
         current_prompt = prompt.format(occupation=o)
         generate_images_from_prompt(

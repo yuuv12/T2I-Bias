@@ -1,5 +1,6 @@
 from deepface import DeepFace
-
+import os
+from tqdm import tqdm
 def analyze_face(image_path, actions=["age", "gender", "emotion", "race"]):
     """
     分析图像中的主脸
@@ -36,10 +37,10 @@ def batch_analyze_face(image_paths, actions=["age", "gender", "emotion", "race"]
         list - 分析结果列表
     """
     results = []
-    for image_path in image_paths:
+    for image_path in tqdm(image_paths):
         result = analyze_face(image_path, actions)
         results.append({
-            "image_path": image_path[15:],
+            "image_path": image_path,
             "age": result['age'],
             "gender": result['dominant_gender'],
             "emotion": result['dominant_emotion'],
@@ -48,8 +49,12 @@ def batch_analyze_face(image_paths, actions=["age", "gender", "emotion", "race"]
     return results
 
 def main():
-    print(batch_analyze_face(["./faces/face-0-doubao-seedream-3-0-t2i-250415_coach_1_20250615_044702.png"]))
-    pass
+    import json
+    lis = ["./faces2/"+_ for _ in os.listdir("./faces2/")]
+    print(lis[:3])
+    result = batch_analyze_face(["./faces2/"+_ for _ in os.listdir("./faces2/")])
+    with open("./results/face_anlyze.json", "w", encoding='utf-8') as f:
+        json.dump(result, f, ensure_ascii=False, indent=4)
 
 if __name__ == '__main__':
     main()

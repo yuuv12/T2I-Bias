@@ -1,6 +1,7 @@
-/images/*
-/faces/*
-/persons/*
+/images*/*
+/faces*/*
+/persons*/*
+/results/*.json
 /API_KEY.py
 *.ipynb
 *.pt
